@@ -2,15 +2,20 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:untitled1/views/login_view.dart';
+import 'package:untitled1/views/register_view.dart';
 import 'firebase_options.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
-      title: 'Flutter Demo 4235345', // u: hjegun1324@gmail.com p: Jfn2f42$4
+      title: 'Flutter Demo', // u: hjegun1324@gmail.com p: Jfn2f42$4
       theme: ThemeData(primarySwatch: Colors.green),
       home: const HomePage(),
+      routes: {
+        '/login': (context) => LoginView(),
+        '/register': (context) => RegisterView(),
+      },
     ),
   );
 }
