@@ -74,6 +74,8 @@ class _RegisterViewState extends State<RegisterView> {
                   showErrorDialog(context, "Email is already used");
                 } else if (e.code == 'invalid-email') {
                   showErrorDialog(context, "Invalid email");
+                } else {
+                  await showErrorDialog(context, 'Error ${e.code}');
                 }
               }
             },
