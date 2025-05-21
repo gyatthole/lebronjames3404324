@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:untitled1/services/auth/auth_service.dart';
 import '../enums/menu_action.dart';
 import '../routes/constants.dart';
 
@@ -23,7 +23,7 @@ class _NotesViewState extends State<NotesView> {
                 case MenuAction.logout:
                   final shouldLogout = await showLogOutDialog(context);
                   if (shouldLogout) {
-                    await FirebaseAuth.instance.signOut();
+                    await AuthService.firebase().logOut();
                     Navigator.of(
                       context,
                     ).pushNamedAndRemoveUntil(loginRoute, (_) => false);
