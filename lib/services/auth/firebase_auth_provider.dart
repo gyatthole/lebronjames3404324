@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:untitled1/firebase_options.dart';
 
 import 'auth_user.dart';
 import 'auth_provider.dart';
@@ -7,6 +9,14 @@ import 'package:firebase_auth/firebase_auth.dart'
     show FirebaseAuth, FirebaseAuthException, FirebaseException;
 
 class FirebaseAuthProvider implements AuthProvider {
+  @override
+  Future<void> initialize() async {
+    Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+  }
+
+
   @override
   Future<AuthUser> createUser({
     required String email,
@@ -97,4 +107,6 @@ class FirebaseAuthProvider implements AuthProvider {
     } else {}
     throw UserNotLoggedInAuthException();
   }
+
+
 }
