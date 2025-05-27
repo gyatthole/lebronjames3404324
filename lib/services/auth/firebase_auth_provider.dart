@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:untitled1/firebase_options.dart';
 
 import 'auth_user.dart';

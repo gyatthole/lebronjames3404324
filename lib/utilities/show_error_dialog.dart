@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:developer' as devtools show log;
 
 Future<void> showErrorDialog(BuildContext context, String text) {
   return showDialog(

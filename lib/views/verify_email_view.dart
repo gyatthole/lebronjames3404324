@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'dart:developer' as devtools show log;
 import 'package:untitled1/routes/constants.dart';
 import 'package:untitled1/services/auth/auth_service.dart';
 
