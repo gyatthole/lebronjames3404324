@@ -7,7 +7,7 @@ import 'package:untitled1/views/register_view.dart';
 import 'package:untitled1/views/verify_email_view.dart';
 
 void main() {
-  //WidgetsFlutterBinding.ensureInitialized();
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
       title: 'Flutter Demo', // u: hjegun1324@gmail.com p: Jfn2f42$4
@@ -28,6 +28,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
     return FutureBuilder(
       future: AuthService.firebase().initialize(),
       builder: (context, snapshot) {
@@ -38,7 +39,6 @@ class HomePage extends StatelessWidget {
               if (user.isEmailVerified) {
                 return const NotesView();
               } else {
-                print('hi i am done with video 25');
                 return const VerifyEmailView();
               }
             } else {
