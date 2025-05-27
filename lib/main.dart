@@ -7,7 +7,7 @@ import 'package:untitled1/views/register_view.dart';
 import 'package:untitled1/views/verify_email_view.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
       title: 'Flutter Demo', // u: hjegun1324@gmail.com p: Jfn2f42$4
