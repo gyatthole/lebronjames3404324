@@ -3,11 +3,11 @@
 # Files and directories created by pub
 .dart_tool/
 .packages
-android/
-ios/
-linux/
-windows/
-build/
+#android/
+#ios/
+#linux/
+#windows/
+#build/
 # If you're building an application, you may want to check-in your pubspec.lock
 pubspec.lock
 
