@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lebronjames3404324/services/auth/auth_service.dart';
 import 'package:lebronjames3404324/services/crud/notes_service.dart';
-import '../enums/menu_action.dart';
-import '../routes/constants.dart';
+import '../../enums/menu_action.dart';
+import '../../routes/constants.dart';
 
 class NotesView extends StatefulWidget {
   const NotesView({super.key});
@@ -33,6 +33,12 @@ class _NotesViewState extends State<NotesView> {
       appBar: AppBar(
         title: const Text('Main UI'),
         actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(context).pushNamed(newNoteRoute);
+            },
+            icon: const Icon(Icons.add),
+          ),
           PopupMenuButton<MenuAction>(
             onSelected: (value) async {
               switch (value) {
@@ -76,7 +82,6 @@ class _NotesViewState extends State<NotesView> {
             default:
               return const CircularProgressIndicator();
           }
-          if (snapshot.connectionState == ConnectionState.done) ;
           return Text('Hello');
         },
       ),
