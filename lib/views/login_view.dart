@@ -70,7 +70,7 @@ class _LoginViewState extends State<LoginView> {
                 } else {}
                 Navigator.of(
                   context,
-                ).pushNamedAndRemoveUntil(verifyEmailRoute, (route) => false);
+                ).pushNamedAndRemoveUntil(notesRoute, (route) => false);
               } on WrongPasswordAuthException {
                 await showErrorDialog(context, "Wrong password");
               } on UserNotFoundAuthException {
