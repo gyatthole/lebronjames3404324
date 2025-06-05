@@ -20,7 +20,7 @@ class _NewNoteViewState extends State<NewNoteView> {
     super.initState();
   }
 
-  void _setupTtextControllerListener() async {
+  void _setupTextControllerListener() async {
     final note = _note;
     if (note == null) {
       return;
@@ -58,14 +58,16 @@ class _NewNoteViewState extends State<NewNoteView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('New note')),
+      appBar: AppBar(
+          title: const Text('New note')
+      ),
       body: FutureBuilder(
         future: createNewNote(),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               _note = snapshot.data as DatabaseNote;
-              _setupTtextControllerListener();
+              _setupTextControllerListener();
               return TextField(
                 controller: _textController,
                 keyboardType: TextInputType.multiline,
