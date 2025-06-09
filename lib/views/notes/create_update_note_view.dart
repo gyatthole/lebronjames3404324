@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:lebronjames3404324/services/auth/auth_service.dart';
+import 'package:lebronjames3404324/utilities/generics/get_arguments.dart';
 import '../../services/crud/notes_service.dart';
 
-class NewNoteView extends StatefulWidget {
-  const NewNoteView({Key? key}) : super(key: key);
+class CreateUpdateNoteVIew extends StatefulWidget {
+  const CreateUpdateNoteVIew({Key? key}) : super(key: key);
 
   @override
-  _NewNoteViewState createState() => _NewNoteViewState();
+  _CreateUpdateNoteVIewState createState() => _CreateUpdateNoteVIewState();
 }
 
-class _NewNoteViewState extends State<NewNoteView> {
+class _CreateUpdateNoteVIewState extends State<CreateUpdateNoteVIew> {
   DatabaseNote? _note;
   late final NotesService _notesService;
   late final TextEditingController _textController;
@@ -29,7 +30,8 @@ class _NewNoteViewState extends State<NewNoteView> {
     await _notesService.updateNote(note: note, text: text);
   }
 
-  Future<DatabaseNote> createNewNote() async {
+  Future<DatabaseNote> createOrGetExistingNote(BuildContext context) async {
+    final widgetNote = context.getArgument<DatabaseNote>();
     final existingNote = _note;
     if (existingNote != null) {
       return existingNote;
@@ -62,7 +64,7 @@ class _NewNoteViewState extends State<NewNoteView> {
           title: const Text('New note')
       ),
       body: FutureBuilder(
-        future: createNewNote(),
+        future: createOrGetExistingNote(context),
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
