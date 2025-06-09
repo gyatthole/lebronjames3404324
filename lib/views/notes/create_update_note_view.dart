@@ -32,6 +32,13 @@ class _CreateUpdateNoteVIewState extends State<CreateUpdateNoteVIew> {
 
   Future<DatabaseNote> createOrGetExistingNote(BuildContext context) async {
     final widgetNote = context.getArgument<DatabaseNote>();
+
+    if (widgetNote != null) {
+      _note = widgetNote;
+      _textController.text = widgetNote.text;
+      return widgetNote;
+    }
+
     final existingNote = _note;
     if (existingNote != null) {
       return existingNote;
@@ -39,6 +46,8 @@ class _CreateUpdateNoteVIewState extends State<CreateUpdateNoteVIew> {
     final currentUser = AuthService.firebase().currentUser!;
     final email = currentUser.email!;
     final owner = await _notesService.getUser(email: email);
+    final newNote = await _notesService.createNote(owner: owner);
+    _note = newNote;
     return await _notesService.createNote(owner: owner);
   }
 
@@ -68,7 +77,6 @@ class _CreateUpdateNoteVIewState extends State<CreateUpdateNoteVIew> {
         builder: (context, snapshot) {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
-              _note = snapshot.data as DatabaseNote;
               _setupTextControllerListener();
               return TextField(
                 controller: _textController,
