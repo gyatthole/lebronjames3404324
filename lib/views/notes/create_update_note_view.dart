@@ -67,11 +67,17 @@ class _CreateUpdateNoteVIewState extends State<CreateUpdateNoteVIew> {
   }
 
   @override
+  void dispose() {
+    _deleteNoteIfTextIsEmpty();
+    _saveNoteIfTextNotEmpty();
+    _textController.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          title: const Text('New note')
-      ),
+      appBar: AppBar(title: const Text('New note')),
       body: FutureBuilder(
         future: createOrGetExistingNote(context),
         builder: (context, snapshot) {
