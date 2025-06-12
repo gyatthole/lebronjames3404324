@@ -7,7 +7,7 @@ import 'package:lebronjames3404324/services/cloud/cloud_note.dart';
 typedef NoteCallback = void Function(CloudNote note);
 
 class NotesListView extends StatelessWidget {
-  final List<CloudNote> notes;
+  final Iterable<CloudNote> notes;
   final NoteCallback onDeleteNote;
   final NoteCallback onTap;
   const NotesListView({

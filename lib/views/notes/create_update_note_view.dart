@@ -4,6 +4,9 @@ import 'package:lebronjames3404324/utilities/generics/get_arguments.dart';
 import 'package:lebronjames3404324/services/cloud/cloud_note.dart';
 import 'package:lebronjames3404324/services/cloud/cloud_storage_exceptions.dart';
 import 'package:lebronjames3404324/services/cloud/firebase_cloud_storage.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../../utilities/dialogs/cannot_share_empty_note_view.dart';
 
 class CreateUpdateNoteVIew extends StatefulWidget {
   const CreateUpdateNoteVIew({Key? key}) : super(key: key);
@@ -46,8 +49,8 @@ class _CreateUpdateNoteVIewState extends State<CreateUpdateNoteVIew> {
       return existingNote;
     }
     final currentUser = AuthService.firebase().currentUser!;
-final userId = currentUser.id;
-final newNote = await _notesService.createNewNote(ownerUserId:userId);
+    final userId = currentUser.id;
+    final newNote = await _notesService.createNewNote(ownerUserId: userId);
     _note = newNote;
     return newNote;
   }
@@ -78,7 +81,22 @@ final newNote = await _notesService.createNewNote(ownerUserId:userId);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('New note')),
+      appBar: AppBar(
+        title: const Text('New note'),
+        actions: [
+          IconButton(
+            onPressed: () async {
+              final text = _textController.text;
+              if (_note == null || text.isEmpty) {
+                await showCannotShareEmptyNoteDialog(context);
+              } else {
+                Share.share(text);
+              }
+            },
+            icon: const Icon(Icons.share_rounded),
+          ),
+        ],
+      ),
       body: FutureBuilder(
         future: createOrGetExistingNote(context),
         builder: (context, snapshot) {
