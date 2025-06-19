@@ -10,11 +10,6 @@ class AuthEventInitialize extends AuthEvent {
   const AuthEventInitialize();
 }
 
-class AuthStateRegistering extends AuthState {
-  final Exception? exception;
-  const AuthStateRegistering(this.exception);
-}
-
 class AuthEventSendEmailVerification extends AuthEvent {
   const AuthEventSendEmailVerification();
 }
